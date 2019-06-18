@@ -7,6 +7,7 @@ pipeline {
             stage('Create org') {
                 steps {
                     script {
+                    
 
                         status = sh returnStatus: true, script: "git rebase origin/master"
                         if(status != 0){
