@@ -1,7 +1,7 @@
 pipeline {
     agent any
     tools {
-            tool name: 'maven', type: 'maven'
+            maven 'Maven 3.3.9'
         }
     stages {
             stage('Create org') {
