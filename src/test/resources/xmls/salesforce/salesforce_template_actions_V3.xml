@@ -1,0 +1,11 @@
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
+
+<suite name="Dadadocs templates tab v3 tests" verbose="1">
+
+    <parameter name="recipientEmail" value="pdf_sf_rnt@support.pdffiller.com"/>
+    <test name="Templates action">
+        <classes>
+            <class name="tests.salesforce.V3.TemplateActionsV3Test"/>
+        </classes>
+    </test>
+</suite>

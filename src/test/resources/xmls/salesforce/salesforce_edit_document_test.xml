@@ -1,0 +1,10 @@
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
+<suite name="Edit document in pdffiller test" verbose="1">
+    <test name="Edit document test">
+        <parameter name="before" value="Test"/>
+        <parameter name="recipientEmail" value="pd@support.pdffiller.com"/>
+        <classes>
+            <class name="tests.salesforce.documents.EditDocumentTest"/>
+        </classes>
+    </test>
+</suite>

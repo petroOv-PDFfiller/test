@@ -1,0 +1,17 @@
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
+<suite name="airSlate app" verbose="1">
+
+    <parameter name="browser" value="selenoid"/>
+    <parameter name="sHub" value="selenoid-qa.cinfra-prod.int"/>
+
+    <test name="Custom button standard user">
+        <classes>
+            <class name="tests.salesforce.airSlate_app.ASAppCustomButtonStandardUserTest"/>
+        </classes>
+    </test>
+    <test name="Custom button custom object">
+        <classes>
+            <class name="tests.salesforce.airSlate_app.ASAppCustomButtonCustomObjectTest"/>
+        </classes>
+    </test>
+</suite>

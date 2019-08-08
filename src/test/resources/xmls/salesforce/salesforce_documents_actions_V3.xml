@@ -1,0 +1,14 @@
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
+
+<suite name="Dadadocs documents tab v3 tests" verbose="1">
+
+    <parameter name="browser" value="selenoid"/>
+    <parameter name="sHub" value="selenoid-qa.cinfra-prod.int"/>
+    <parameter name="recipientEmail" value="pdf_sf_rnt@support.pdffiller.com"/>
+
+    <test name="Documents action">
+        <classes>
+            <class name="tests.salesforce.V3.DocumentActionsV3Test"/>
+        </classes>
+    </test>
+</suite>

@@ -1,0 +1,18 @@
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
+
+<suite name="Dreamforce suite" verbose="1">
+    <parameter name="browser" value="selenoid"/>
+    <parameter name="sHub" value="selenoid-qa.cinfra-prod.int"/>
+
+    <test name="Demo test">
+        <parameter name="recipientEmail" value="pdf_sf_recipient@support.pdffiller.com"/>
+        <classes>
+            <class name="tests.salesforce.sales_org.DreamforceDemoReserveOrgTest"/>
+        </classes>
+    </test>
+    <!--<test name="Create template test">-->
+    <!--<classes>-->
+    <!--<class name="tests.salesforce.complex_template.CreateComplexTemplateTest"/>-->
+    <!--</classes>-->
+    <!--</test>-->
+</suite>

@@ -1,0 +1,11 @@
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
+
+<suite name="Lead Reports Test" verbose="1">
+    <test name="Reports test">
+        <parameter name="email" value="pdf_sf_recipient@support.pdffiller.com"/>
+        <parameter name="browser" value="no"/>
+        <classes>
+            <class name="tests.salesforce.leadreport.LeadReportTest"/>
+        </classes>
+    </test>
+</suite>

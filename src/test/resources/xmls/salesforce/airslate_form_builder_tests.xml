@@ -1,0 +1,25 @@
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
+
+<suite name="Form Builder API" verbose="1">
+    <parameter name="orgDomain" value="hfb-autotest"/>
+    <parameter name="browser" value="no"/>
+    <parameter name="email" value="pdf_sf_aqa+hfb@support.pdffiller.com"/>
+    <parameter name="recipientEmail" value="pdf_sf_aqa+guest@support.pdffiller.com"/>
+
+    <test name="Check all fields from HTML builder">
+        <classes>
+            <class name="tests.html_form_builder.FormBuilderFieldTests">
+                <methods>
+                    <include name="checkAllFieldTypes"></include>
+                    <include name="wrongFieldType"></include>
+                </methods>
+            </class>
+        </classes>
+    </test>
+    <test name="Test Fill Form">
+        <classes>
+            <class name="tests.html_form_builder.FormBuilderFillTests">
+            </class>
+        </classes>
+    </test>
+</suite>

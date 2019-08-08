@@ -1,0 +1,44 @@
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
+<suite name="airSlate app" verbose="1">
+    <parameter name="browser" value="no"/>
+    <test name="Authorization">
+        <classes>
+            <class name="tests.salesforce.airSlate_app.api.UserAuthorizationTests"/>
+        </classes>
+    </test>
+    <test name="Workspace">
+        <classes>
+            <class name="tests.salesforce.airSlate_app.api.ConnectWorkspaceTests"/>
+        </classes>
+    </test>
+    <test name="ObjectsAndLayouts">
+        <classes>
+            <class name="tests.salesforce.airSlate_app.api.ObjectsAndLayoutsTests"/>
+        </classes>
+    </test>
+    <test name="SetupWizard">
+        <classes>
+            <class name="tests.salesforce.airSlate_app.api.SetupWizardTests"/>
+        </classes>
+    </test>
+    <test name="Settings">
+        <classes>
+            <class name="tests.salesforce.airSlate_app.api.SettingsTests"/>
+        </classes>
+    </test>
+    <test name="Survey">
+        <classes>
+            <class name="tests.salesforce.airSlate_app.api.SurveysTests"/>
+        </classes>
+    </test>
+    <test name="Schedulers">
+        <classes>
+            <class name="tests.salesforce.airSlate_app.api.SchedulerTests"/>
+        </classes>
+    </test>
+    <test name="Custom Buttons">
+        <classes>
+            <class name="tests.salesforce.airSlate_app.api.CustomButtonTests"/>
+        </classes>
+    </test>
+</suite>

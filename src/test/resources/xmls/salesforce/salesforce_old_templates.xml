@@ -1,0 +1,19 @@
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
+<suite name="Old templates suite" verbose="1">
+    <parameter name="recipientEmail" value="pdf_sf_recipient@support.pdffiller.com"/>
+    <test name="Prefill template test">
+        <classes>
+            <class name="tests.salesforce.old_templates.PrefillTemplateTest"/>
+        </classes>
+    </test>
+    <test name="Nomap template test">
+        <classes>
+            <class name="tests.salesforce.old_templates.NomapTemplateTest"/>
+        </classes>
+    </test>
+    <test name="Complex template test">
+        <classes>
+            <class name="tests.salesforce.old_templates.ComplexTemplateTest"/>
+        </classes>
+    </test>
+</suite>

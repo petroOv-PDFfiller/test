@@ -1,0 +1,9 @@
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
+
+<suite name="Dadadocs s3 integration" verbose="1">
+    <test name="S3 tests">
+        <classes>
+            <class name="tests.salesforce.V3.S3ConfigurationTest"/>
+        </classes>
+    </test>
+</suite>

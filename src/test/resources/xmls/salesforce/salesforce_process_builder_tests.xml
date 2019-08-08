@@ -1,0 +1,14 @@
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
+
+<suite name="Process builder tests" verbose="1">
+    <test name="Opportunity process builder tests">
+        <classes>
+            <class name="tests.salesforce.process_builder.OpportunityProcessBuilderTest"/>
+        </classes>
+    </test>
+    <test name="Process builder test">
+        <classes>
+            <class name="tests.salesforce.process_builder.ProcessBuilderTest"/>
+        </classes>
+    </test>
+</suite>

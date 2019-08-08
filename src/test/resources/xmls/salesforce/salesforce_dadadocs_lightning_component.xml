@@ -1,0 +1,10 @@
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
+<suite name="DaDaDocs lightning component" verbose="1">
+
+    <test name="Lightning component test">
+        <parameter name="recipientEmail" value="pdf_sf_rnt@support.pdffiller.com"/>
+        <classes>
+            <class name="tests.salesforce.lightning_component.LightningComponentTest"/>
+        </classes>
+    </test>
+</suite>

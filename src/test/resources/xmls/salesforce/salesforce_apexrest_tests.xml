@@ -1,0 +1,19 @@
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
+<suite name="APEXREST" verbose="1">
+    <parameter name="browser" value="no"/>
+    <parameter name="tokenUrl" value="https://login.salesforce.com/services/oauth2/token"/>
+    <parameter name="orgUserEmail" value="pdf_sf_aqa+at@support.pdffiller.com"/>
+    <parameter name="orgUserPassword" value="Likas_qwe1rty2"/>
+
+    <test name="Templates">
+        <classes>
+            <class name="tests.salesforce.apexrest.SalesforceTemplatesTest"/>
+        </classes>
+    </test>
+
+    <test name="Documents">
+        <classes>
+            <class name="tests.salesforce.apexrest.SalesforceDocumentsTest"/>
+        </classes>
+    </test>
+</suite>

@@ -1,0 +1,37 @@
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
+<suite name="airSlate app" verbose="1">
+
+    <parameter name="browser" value="selenoid"/>
+    <parameter name="sHub" value="selenoid-qa.cinfra-prod.int"/>
+
+    <test name="Prefill bot">
+        <classes>
+            <class name="tests.airslate_bots.PrefillBotTest"/>
+        </classes>
+    </test>
+    <test name="SendASlate bot">
+        <classes>
+            <class name="tests.airslate_bots.SendASlateBotTest"/>
+        </classes>
+    </test>
+    <test name="Create bot">
+        <classes>
+            <class name="tests.airslate_bots.CreateRecordBotTest"/>
+        </classes>
+    </test>
+    <test name="Update bot">
+        <classes>
+            <class name="tests.airslate_bots.UpdateRecordBotTest"/>
+        </classes>
+    </test>
+    <test name="Upload bot">
+        <classes>
+            <class name="tests.airslate_bots.UploadBotTest"/>
+        </classes>
+    </test>
+    <test name="Invoke Salesforce process bot">
+        <classes>
+            <class name="tests.airslate_bots.InvokeProcessBot"/>
+        </classes>
+    </test>
+</suite>

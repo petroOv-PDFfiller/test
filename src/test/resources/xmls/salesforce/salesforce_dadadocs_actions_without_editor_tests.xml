@@ -1,0 +1,14 @@
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
+
+<suite name="Dadadocs actions tests">
+
+    <parameter name="browser" value="selenoid"/>
+    <parameter name="sHub" value="selenoid-qa.cinfra-prod.int"/>
+
+    <parameter name="recipientEmail" value="pdf_sf_rnt@support.pdffiller.com"/>
+    <test name="Actions test">
+        <classes>
+            <class name="tests.salesforce.documents.DocumentActionsTest"/>
+        </classes>
+    </test>
+</suite>

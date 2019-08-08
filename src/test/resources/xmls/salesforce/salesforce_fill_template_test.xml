@@ -1,0 +1,10 @@
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
+
+<suite name="Fill DaDadDocs templates test" verbose="1">
+    <parameter name="disableFlash" value="true"/>
+    <test name="Create template test">
+        <classes>
+            <class name="tests.salesforce.templates.CreateComplexTemplateTest"/>
+        </classes>
+    </test>
+</suite>

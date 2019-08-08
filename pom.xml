@@ -4,33 +4,75 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>pdffiller</groupId>
-    <artifactId>pdffiller-tests</artifactId>
-    <version>1.0-SNAPSHOT</version>
+    <groupId>qa.integrations</groupId>
+    <artifactId>qa.integrations.tests</artifactId>
+    <version>1.1-SNAPSHOT</version>
+
+    <distributionManagement>
+        <repository>
+            <id>artifactory</id>
+            <name>artifactory-releases</name>
+            <url>https://pdffiller.jfrog.io/pdffiller/qa</url>
+        </repository>
+        <snapshotRepository>
+            <id>artifactory</id>
+            <name>artifactory-snapshots</name>
+            <url>https://pdffiller.jfrog.io/pdffiller/qa</url>
+        </snapshotRepository>
+    </distributionManagement>
 
     <properties>
-        <resultsPatternAllure>**/allure-results</resultsPatternAllure>
+        <jdk.source.version>1.8</jdk.source.version>
+        <jdk.target.version>1.8</jdk.target.version>
         <compiler.version>1.8</compiler.version>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <allure.version>1.4.15</allure.version>
+        <allure.version>2.12.1</allure.version>
         <aspectj.version>1.8.3</aspectj.version>
         <suite>test.xml</suite>
         <buildDirectory>${project.basedir}/target</buildDirectory>
-        <allure.results.directory>${buildDirectory}/allure-results</allure.results.directory>
+
+        <!-- The properties for AWS S3 -->
+        <s3-bucket>cinfra-prod-qa-autotest-data</s3-bucket>
     </properties>
+
+    <repositories>
+        <repository>
+            <id>sonatype-nexus-snapshots</id>
+            <url>https://oss.sonatype.org/content/repositories/snapshots</url>
+        </repository>
+
+        <repository>
+            <id>artifactory</id>
+            <url>https://pdffiller.jfrog.io/pdffiller/qa</url>
+        </repository>
+
+    </repositories>
+
+    <pluginRepositories>
+        <pluginRepository>
+            <id>sonatype-nexus-snapshots</id>
+            <url>https://oss.sonatype.org/content/repositories/snapshots</url>
+        </pluginRepository>
+    </pluginRepositories>
 
     <build>
         <directory>${buildDirectory}</directory>
+
         <plugins>
+
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
-                <version>3.3</version>
+                <version>3.7.0</version>
                 <configuration>
                     <source>${compiler.version}</source>
                     <target>${compiler.version}</target>
+                    <annotationProcessors>
+                        <annotationProcessor>lombok.core.AnnotationProcessor</annotationProcessor>
+                    </annotationProcessors>
                 </configuration>
             </plugin>
+
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-source-plugin</artifactId>
@@ -51,7 +93,7 @@
                 <version>2.17</version>
                 <configuration>
                     <argLine>
-                        -javaagent:${settings.localRepository}/org/aspectj/aspectjweaver/${aspectj.version}/aspectjweaver-${aspectj.version}.jar
+                        "-javaagent:${settings.localRepository}/org/aspectj/aspectjweaver/${aspectj.version}/aspectjweaver-${aspectj.version}.jar"
                     </argLine>
 
                     <suiteXmlFiles>
@@ -61,8 +103,129 @@
                     <systemProperties>
                         <property>
                             <name>allure.results.directory</name>
-                            <value>${allure.results.directory}</value>
+                            <value>${project.build.directory}/allure-results</value>
                         </property>
+
+                        <property>
+                            <name>browser</name>
+                            <value>CH</value>
+                        </property>
+
+                        <property>
+                            <name>counts</name>
+                            <value>1</value>
+                        </property>
+
+                        <property>
+                            <name>url</name>
+                            <value>https://www.pdffiller.com</value>
+                        </property>
+
+                        <property>
+                            <name>screenSize</name>
+                            <value>1366x768</value>
+                        </property>
+
+                        <property>
+                            <name>takeNewScreenshot</name>
+                            <value>false</value>
+                        </property>
+
+                        <property>
+                            <name>activeJsDesks</name>
+                            <values>desk7</values>
+                        </property>
+
+                        <property>
+                            <name>email</name>
+                            <value>pd@support.pdffiller.com</value>
+                        </property>
+
+                        <property>
+                            <name>testPassword</name>
+                            <value>qwe1rty2</value>
+                        </property>
+
+                        <property>
+                            <name>experiment</name>
+                            <value>withoutExperiment</value>
+                        </property>
+
+                        <property>
+                            <name>desk</name>
+                            <value>withoutDesk</value>
+                        </property>
+
+                        <property>
+                            <name>refreshCount</name>
+                            <value>1</value>
+                        </property>
+
+                        <property>
+                            <name>doneBackCount</name>
+                            <value>1</value>
+                        </property>
+
+                        <property>
+                            <name>busyCount</name>
+                            <value>1</value>
+                        </property>
+
+                        <property>
+                            <name>network</name>
+                            <value>Network 2</value>
+                        </property>
+
+                        <property>
+                            <name>timeout</name>
+                            <value>1</value>
+                        </property>
+
+                        <property>
+                            <name>iteration</name>
+                            <value>4</value>
+                        </property>
+
+                        <property>
+                            <name>environment</name>
+                            <value>withoutEnvironment</value>
+                        </property>
+
+                        <property>
+                            <name>orgDomain</name>
+                            <value>my</value>
+                        </property>
+
+                        <property>
+                            <name>teVersion</name>
+                            <value>1</value>
+                        </property>
+
+                        <property>
+                            <name>testRunId</name>
+                            <value>0</value>
+                        </property>
+
+                        <property>
+                            <name>testRailProject</name>
+                            <value>0</value>
+                        </property>
+
+                        <property>
+                            <name>s3-bucket</name>
+                            <value>${s3-bucket}</value>
+                        </property>
+
+                        <property>
+                            <name>awsAccessKeyId</name>
+                            <value>undefined</value>
+                        </property>
+
+                        <property>
+                            <name>awsSecretAccessKey</name>
+                            <value>undefined</value>
+                        </property>
+
                     </systemProperties>
                 </configuration>
 
@@ -76,12 +239,44 @@
             </plugin>
 
             <plugin>
-                <groupId>org.eclipse.jetty</groupId>
-                <artifactId>jetty-maven-plugin</artifactId>
-                <version>9.3.5.v20151012</version>
-                <configuration>
-                    <webAppSourceDirectory>${project.build.directory}/site/allure-maven-plugin</webAppSourceDirectory>
-                </configuration>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-dependency-plugin</artifactId>
+                <version>3.1.1</version>
+            </plugin>
+
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-jar-plugin</artifactId>
+                <version>3.1.1</version>
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>test-jar</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+
+            <!-- Configures the needed goal to fire and directory in which test resources will be put-->
+            <plugin>
+                <artifactId>maven-resources-plugin</artifactId>
+                <version>3.1.0</version>
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>testResources</goal>
+                        </goals>
+                        <configuration>
+                            <outputDirectory>${basedir}/target/resources</outputDirectory>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+
+            <plugin>
+                <groupId>io.qameta.allure</groupId>
+                <artifactId>allure-maven</artifactId>
+                <version>2.10.0</version>
             </plugin>
 
         </plugins>
@@ -91,11 +286,11 @@
         <excludeDefaults>true</excludeDefaults>
         <plugins>
             <plugin>
-                <groupId>ru.yandex.qatools.allure</groupId>
-                <artifactId>allure-maven-plugin</artifactId>
-                <version>2.0</version>
+                <groupId>io.qameta.allure</groupId>
+                <artifactId>allure-maven</artifactId>
+                <version>2.10.0</version>
                 <configuration>
-                    <resultsPattern>${resultsPatternAllure}</resultsPattern>
+                    <reportVersion>${allure.version}</reportVersion>
                 </configuration>
             </plugin>
         </plugins>
@@ -103,54 +298,59 @@
 
     <dependencies>
 
+        <!-- JsonParser -->
+        <dependency>
+            <groupId>com.googlecode.json-simple</groupId>
+            <artifactId>json-simple</artifactId>
+            <version>1.1</version>
+        </dependency>
+
         <!-- TestNG -->
         <dependency>
             <groupId>org.testng</groupId>
             <artifactId>testng</artifactId>
-            <version>6.8.8</version>
+            <version>6.14.3</version>
         </dependency>
 
         <!-- JUNIT -->
         <dependency>
             <groupId>junit</groupId>
             <artifactId>junit</artifactId>
-            <version>4.11</version>
+            <version>4.12</version>
         </dependency>
 
         <!-- Selenium -->
         <dependency>
             <groupId>org.seleniumhq.selenium</groupId>
             <artifactId>selenium-java</artifactId>
-            <version>2.47.1</version>
+            <version>3.141.59</version>
+        </dependency>
+
+        <dependency>
+            <groupId>com.codeborne</groupId>
+            <artifactId>selenide</artifactId>
+            <version>5.2.4</version>
         </dependency>
 
         <!-- Selenium Server -->
         <dependency>
             <groupId>org.seleniumhq.selenium</groupId>
             <artifactId>selenium-server</artifactId>
-            <version>2.45.0</version>
+            <version>3.141.59</version>
         </dependency>
 
-        <!-- Selenium Firefox Driver -->
+        <!-- https://mvnrepository.com/artifact/io.qameta.allure/allure-testng -->
         <dependency>
-            <groupId>org.seleniumhq.selenium</groupId>
-            <artifactId>selenium-firefox-driver</artifactId>
-            <version>2.47.1</version>
-        </dependency>
-
-
-        <!--Allure TestNG-->
-        <dependency>
-            <groupId>ru.yandex.qatools.allure</groupId>
-            <artifactId>allure-testng-adaptor</artifactId>
+            <groupId>io.qameta.allure</groupId>
+            <artifactId>allure-testng</artifactId>
             <version>${allure.version}</version>
-            <exclusions>
-                <exclusion>
-                    <artifactId>junit</artifactId>
-                    <groupId>junit</groupId>
-                </exclusion>
-            </exclusions>
         </dependency>
+
+        <!--<dependency>-->
+        <!--<groupId>io.qameta.allure</groupId>-->
+        <!--<artifactId>allure-selenide</artifactId>-->
+        <!--<version>${allure.version}</version>-->
+        <!--</dependency>-->
 
         <!-- Jackson Data Mapper -->
         <dependency>
@@ -159,32 +359,37 @@
             <version>1.9.13</version>
         </dependency>
 
+        <!-- https://mvnrepository.com/artifact/com.fasterxml.jackson.core/jackson-databind -->
+        <dependency>
+            <groupId>com.fasterxml.jackson.core</groupId>
+            <artifactId>jackson-databind</artifactId>
+            <version>2.9.9</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.apache.pdfbox</groupId>
+            <artifactId>pdfbox</artifactId>
+            <version>2.0.15</version>
+        </dependency>
+
+        <dependency>
+            <groupId>com.fasterxml.jackson.core</groupId>
+            <artifactId>jackson-annotations</artifactId>
+            <version>2.9.9</version>
+        </dependency>
+
+        <!-- https://mvnrepository.com/artifact/com.google.code.gson/gson -->
+        <dependency>
+            <groupId>com.google.code.gson</groupId>
+            <artifactId>gson</artifactId>
+            <version>2.8.5</version>
+        </dependency>
+
         <!-- Http client -->
         <dependency>
-            <groupId>commons-httpclient</groupId>
-            <artifactId>commons-httpclient</artifactId>
-            <version>3.1</version>
-        </dependency>
-
-        <!-- JSON -->
-        <dependency>
-            <groupId>org.json</groupId>
-            <artifactId>json</artifactId>
-            <version>20090211</version>
-        </dependency>
-
-        <!-- Java mail api -->
-        <dependency>
-            <groupId>javax.mail</groupId>
-            <artifactId>javax.mail-api</artifactId>
-            <version>1.5.2</version>
-        </dependency>
-
-        <!-- Sun mail -->
-        <dependency>
-            <groupId>com.sun.mail</groupId>
-            <artifactId>javax.mail</artifactId>
-            <version>1.5.2</version>
+            <groupId>org.apache.httpcomponents</groupId>
+            <artifactId>httpclient</artifactId>
+            <version>4.5.6</version>
         </dependency>
 
         <!-- Jsoup (text parser) -->
@@ -194,6 +399,69 @@
             <version>1.8.1</version>
         </dependency>
 
+        <!-- ashot -->
+        <dependency>
+            <groupId>ru.yandex.qatools.ashot</groupId>
+            <artifactId>ashot</artifactId>
+            <version>1.5.4</version>
+        </dependency>
+
+        <!-- HTTP Components -->
+        <dependency>
+            <groupId>org.apache.httpcomponents</groupId>
+            <artifactId>fluent-hc</artifactId>
+            <version>4.5.8</version>
+        </dependency>
+
+        <!-- Joda-time -->
+        <dependency>
+            <groupId>joda-time</groupId>
+            <artifactId>joda-time</artifactId>
+            <version>2.9.9</version>
+        </dependency>
+
+        <!-- Java mail api -->
+        <dependency>
+            <groupId>javax.mail</groupId>
+            <artifactId>javax.mail-api</artifactId>
+            <version>1.6.2</version>
+        </dependency>
+
+        <!-- OkHttp -->
+        <dependency>
+            <groupId>com.squareup.okhttp3</groupId>
+            <artifactId>okhttp</artifactId>
+            <version>3.12.0</version>
+        </dependency>
+
+        <!-- OkHttpCookieHelper -->
+        <dependency>
+            <groupId>org.riversun</groupId>
+            <artifactId>okhttp3-cookie-helper</artifactId>
+            <version>1.0.0</version>
+        </dependency>
+
+        <!-- Automate-TestAssist -->
+        <dependency>
+            <groupId>com.browserstack</groupId>
+            <artifactId>automate-testassist</artifactId>
+            <version>1.0.0-SNAPSHOT</version>
+        </dependency>
+
+        <!--Java Faker -->
+        <dependency>
+            <groupId>com.github.javafaker</groupId>
+            <artifactId>javafaker</artifactId>
+            <version>0.17.2</version>
+        </dependency>
+
+        <!-- Awaitility -->
+        <dependency>
+            <groupId>org.awaitility</groupId>
+            <artifactId>awaitility</artifactId>
+            <version>3.1.2</version>
+        </dependency>
+
         <!-- Lang detect -->
         <dependency>
             <groupId>com.cybozu.labs</groupId>
@@ -201,92 +469,121 @@
             <version>1.1-20120112</version>
         </dependency>
 
-        <!-- ashot -->
         <dependency>
-            <groupId>ru.yandex.qatools.ashot</groupId>
-            <artifactId>ashot</artifactId>
-            <version>1.4.12</version>
-        </dependency>
-
-        <!-- Appium -->
-        <dependency>
-            <groupId>io.appium</groupId>
-            <artifactId>java-client</artifactId>
-            <version>3.2.0</version>
-        </dependency>
-
-        <!-- ghost4j -->
-        <dependency>
-            <groupId>org.ghost4j</groupId>
-            <artifactId>ghost4j</artifactId>
-            <version>1.0.0</version>
-        </dependency>
-
-        <!-- Screen recorder -->
-        <dependency>
-            <groupId>com.pojosontheweb</groupId>
-            <artifactId>monte-repack</artifactId>
-            <version>1.0</version>
-        </dependency>
-
-        <!-- Jetty -->
-        <dependency>
-            <groupId>org.eclipse.jetty.websocket</groupId>
-            <artifactId>websocket-client</artifactId>
-            <version>9.3.2.v20150730</version>
+            <groupId>commons-io</groupId>
+            <artifactId>commons-io</artifactId>
+            <version>2.6</version>
         </dependency>
 
         <dependency>
-            <groupId>com.flipkart.zjsonpatch</groupId>
-            <artifactId>zjsonpatch</artifactId>
-            <version>0.2.1</version>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+            <version>1.14.8</version>
+            <scope>provided</scope>
         </dependency>
 
-        <!-- HTTP Components -->
+        <!--Libraries to work with docx files-->
         <dependency>
-            <groupId>org.apache.httpcomponents</groupId>
-            <artifactId>fluent-hc</artifactId>
-            <version>4.5.1</version>
+            <groupId>org.docx4j</groupId>
+            <artifactId>docx4j</artifactId>
+            <version>3.3.5</version>
         </dependency>
 
-        <!-- Genie -->
         <dependency>
-            <groupId>com.adobe.genie</groupId>
-            <artifactId>genie-executor</artifactId>
-            <version>2.0.0</version>
-            <scope>system</scope>
-            <systemPath>${basedir}\libs\Executor.jar</systemPath>
+            <groupId>javax.xml.bind</groupId>
+            <artifactId>jaxb-api</artifactId>
+            <version>2.1</version>
         </dependency>
 
-        <!-- SikuliX -->
         <dependency>
-            <groupId>org.sikuli</groupId>
-            <artifactId>sikuli-api</artifactId>
-            <version>1.1.0</version>
-            <scope>system</scope>
-            <systemPath>${basedir}\libs\sikulixapi.jar</systemPath>
+            <groupId>qa.airslate</groupId>
+            <artifactId>qa.airslate.api</artifactId>
+            <version>0.4.25-DEVELOP-intg</version>
         </dependency>
 
-        <!-- ATU_Selenium_Utilities (WindowHandler) -->
         <dependency>
-            <groupId>ATU_Selenium_Utilities</groupId>
-            <artifactId>ATU_Selenium_Utilities</artifactId>
-            <version>3.0</version>
-            <scope>system</scope>
-            <systemPath>${basedir}\libs\ATU_Selenium_Utilities_3.0.jar</systemPath>
+            <groupId>qa.airslate</groupId>
+            <artifactId>qa.airslate.alert</artifactId>
+            <version>1.0.6</version>
         </dependency>
 
-        <!-- jacob (WindowHandler) -->
         <dependency>
-            <groupId>com.jacob</groupId>
-            <artifactId>com.jacob</artifactId>
-            <version>1.18</version>
-            <scope>system</scope>
-            <systemPath>${basedir}\libs\jacob.jar</systemPath>
+            <groupId>com.amazonaws</groupId>
+            <artifactId>aws-java-sdk-test-utils</artifactId>
+            <version>1.11.506</version>
+        </dependency>
+        <dependency>
+            <groupId>com.amazonaws</groupId>
+            <artifactId>aws-java-sdk-s3</artifactId>
+            <version>1.11.506</version>
         </dependency>
 
+        <dependency>
+            <groupId>com.force.api</groupId>
+            <artifactId>force-metadata-api</artifactId>
+            <version>46.0.0</version>
+        </dependency>
+
+        <dependency>
+            <groupId>com.force.api</groupId>
+            <artifactId>force-partner-api</artifactId>
+            <version>46.0.0</version>
+        </dependency>
+
+        <dependency>
+            <groupId>com.frejo</groupId>
+            <artifactId>force-rest-api</artifactId>
+            <version>0.0.40</version>
+            <exclusions>
+                <exclusion>
+                    <groupId>com.fasterxml.jackson.core</groupId>
+                    <artifactId>jackson-databind</artifactId>
+                </exclusion>
+            </exclusions>
+        </dependency>
+
+        <dependency>
+            <groupId>qa.pdffiller</groupId>
+            <artifactId>qa.pdffiller.tests</artifactId>
+            <version>1.1-SNAPSHOT</version>
+        </dependency>
+
+        <dependency>
+            <groupId>com.itextpdf</groupId>
+            <artifactId>itextpdf</artifactId>
+            <version>5.5.13</version>
+        </dependency>
+
+        <dependency>
+            <groupId>qa.pdffiller</groupId>
+            <artifactId>qa.pdffiller.api</artifactId>
+            <version>0.2.4</version>
+            <exclusions>
+                <exclusion>
+                    <groupId>ru.yandex.qatools.allure</groupId>
+                    <artifactId>allure-testng-adaptor</artifactId>
+                </exclusion>
+            </exclusions>
+        </dependency>
+
+        <dependency>
+            <groupId>org.aeonbits.owner</groupId>
+            <artifactId>owner-java8</artifactId>
+            <version>1.0.10</version>
+        </dependency>
+
+        <dependency>
+            <groupId>qa.signnow</groupId>
+            <artifactId>qa.signnow.tests</artifactId>
+            <version>1.1-SNAPSHOT</version>
+            <exclusions>
+                <exclusion>
+                    <groupId>ru.yandex.qatools.allure</groupId>
+                    <artifactId>allure-testng-adaptor</artifactId>
+                </exclusion>
+            </exclusions>
+        </dependency>
 
 
     </dependencies>
-
 </project>

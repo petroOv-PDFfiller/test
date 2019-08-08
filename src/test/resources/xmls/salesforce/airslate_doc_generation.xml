@@ -1,0 +1,15 @@
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
+
+<suite name="Doc generation" verbose="1">
+
+    <parameter name="orgDomain" value="dg-autotest"/>
+    <parameter name="browser" value="no"/>
+    <parameter name="email" value="pdf_sf_aqa+dg@support.pdffiller.com"/>
+    <parameter name="environment" value="PROD"/>
+
+    <test name="Basic test">
+        <classes>
+            <class name="tests.airslate_bots.DocGenerationAddonTests"/>
+        </classes>
+    </test>
+</suite>

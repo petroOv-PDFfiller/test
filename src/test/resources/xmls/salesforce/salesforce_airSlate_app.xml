@@ -1,0 +1,67 @@
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
+<suite name="airSlate app" verbose="1">
+
+    <parameter name="browser" value="selenoid"/>
+    <parameter name="sHub" value="selenoid-qa.cinfra-prod.int"/>
+
+    <test name="Admin tools">
+        <parameter name="recipientEmail" value="pdf_sf_rnt@support.pdffiller.com"/>
+        <classes>
+            <class name="tests.salesforce.airSlate_app.ASAppAdminToolsTest"/>
+        </classes>
+    </test>
+    <test name="Workspace Tab">
+        <classes>
+            <class name="tests.salesforce.airSlate_app.ASAppWorkspacesTest"/>
+        </classes>
+    </test>
+    <test name="Custom button Tab">
+        <classes>
+            <class name="tests.salesforce.airSlate_app.ASAppCustomButtonTest"/>
+        </classes>
+    </test>
+    <test name="Custom button sort">
+        <classes>
+            <class name="tests.salesforce.airSlate_app.ASAppCustomButtonSortTest"/>
+        </classes>
+    </test>
+    <test name="Custom button standard user">
+        <classes>
+            <class name="tests.salesforce.airSlate_app.ASAppCustomButtonStandardUserTest"/>
+        </classes>
+    </test>
+    <test name="Custom button custom object">
+        <classes>
+            <class name="tests.salesforce.airSlate_app.ASAppCustomButtonCustomObjectTest"/>
+        </classes>
+    </test>
+    <test name="Custom button bots">
+        <classes>
+            <class name="tests.salesforce.airSlate_app.ASAppCustomButtonSendASlateBotTest"/>
+        </classes>
+    </test>
+    <test name="Custom button listview">
+        <classes>
+            <class name="tests.salesforce.airSlate_app.ASAppCustomButtonListViewTest">
+                <methods>
+                    <exclude name="checkBatchingFor75Records"/>
+                </methods>
+            </class>
+        </classes>
+    </test>
+    <test name="Teammates tab">
+        <classes>
+            <class name="tests.salesforce.airSlate_app.ASAppTeammatesTest"/>
+        </classes>
+    </test>
+    <test name="Schedule flows">
+        <classes>
+            <class name="tests.salesforce.airSlate_app.ASAppScheduledFlowTest"/>
+        </classes>
+    </test>
+    <test name="Lightning component">
+        <classes>
+            <class name="tests.salesforce.airSlate_app.ASAppLightningComponentTest"/>
+        </classes>
+    </test>
+</suite>

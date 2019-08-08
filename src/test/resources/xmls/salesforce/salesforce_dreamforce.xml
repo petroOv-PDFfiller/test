@@ -1,0 +1,15 @@
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
+
+<suite name="Dreamforce suite" verbose="1">
+    <test name="Demo test">
+        <parameter name="recipientEmail" value="pd@support.pdffiller.com"/>
+        <classes>
+            <class name="tests.salesforce.sales_org.DreamforceDemoTest"/>
+        </classes>
+    </test>
+    <test name="Create template test">
+        <classes>
+            <class name="tests.salesforce.templates.CreateComplexTemplateTest"/>
+        </classes>
+    </test>
+</suite>

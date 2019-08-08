@@ -1,0 +1,12 @@
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
+
+<suite name="CPQ test">
+    <parameter name="orgDomain" value="dg-autotest"/>
+    <parameter name="email" value="pdf_sf_aqa+dg@support.pdffiller.com"/>
+
+    <test name="Basic test">
+        <classes>
+            <class name="tests.airslate_bots.CPQTest"/>
+        </classes>
+    </test>
+</suite>

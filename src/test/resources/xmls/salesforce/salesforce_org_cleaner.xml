@@ -1,0 +1,12 @@
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
+
+<suite name="Doc generation" verbose="1">
+
+    <parameter name="browser" value="no"/>
+
+    <test name="Basic test">
+        <classes>
+            <class name="tests.salesforce.ClearOrgsTest"/>
+        </classes>
+    </test>
+</suite>

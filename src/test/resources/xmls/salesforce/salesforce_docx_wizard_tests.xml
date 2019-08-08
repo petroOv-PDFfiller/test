@@ -1,0 +1,18 @@
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
+
+<suite name="Dadadocs docx wizard tests" verbose="1">
+
+    <parameter name="browser" value="selenoid"/>
+    <parameter name="sHub" value="selenoid-qa.cinfra-prod.int"/>
+
+    <test name="Docx wizard tests">
+        <classes>
+            <class name="tests.salesforce.V3.DocxTemplateV3Test"/>
+        </classes>
+    </test>
+    <test name="Docx custom object test">
+        <classes>
+            <class name="tests.salesforce.V3.DocxTemplateCOTest"/>
+        </classes>
+    </test>
+</suite>

@@ -1,0 +1,8 @@
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
+<suite name="Admin tool suite" verbose="1">
+    <test name="Admin tool test">
+        <classes>
+            <class name="tests.salesforce.admin_tools.LayoutsTest"/>
+        </classes>
+    </test>
+</suite>

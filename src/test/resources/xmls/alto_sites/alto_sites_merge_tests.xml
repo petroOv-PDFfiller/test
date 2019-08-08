@@ -1,0 +1,13 @@
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
+
+<suite name="MergePDF file suite" verbose="1">
+
+    <parameter name="browser" value="selenoid"/>
+    <parameter name="sHub" value="selenoid-qa.cinfra-prod.int"/>
+
+    <test name="MergePDF file tests">
+        <classes>
+            <class name="tests.alto_sites.MergeTest"/>
+        </classes>
+    </test>
+</suite>

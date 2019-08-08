@@ -1,0 +1,28 @@
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
+
+<suite name="ServiceNow Instances Wakeup">
+    <test name="Wakeup dev54901 Test">
+        <parameter name="servicenow_instanceUrl" value="https://dev54901.service-now.com"/>
+        <parameter name="servicenow_username" value="admin"/>
+        <parameter name="servicenow_password" value="gowDCLf3FmG6ch1"/>
+        <classes>
+            <class name="tests.servicenow.ServiceNowWakeupTests"/>
+        </classes>
+    </test>
+    <test name="Wakeup dev86199 Test">
+        <parameter name="servicenow_instanceUrl" value="https://dev47138.service-now.com"/>
+        <parameter name="servicenow_username" value="admin"/>
+        <parameter name="servicenow_password" value="8oikVqRRP0iL"/>
+        <classes>
+            <class name="tests.servicenow.ServiceNowWakeupTests"/>
+        </classes>
+    </test>
+    <test name="Wakeup dev57532 Test">
+        <parameter name="servicenow_instanceUrl" value="https://dev57532.service-now.com"/>
+        <parameter name="servicenow_username" value="admin"/>
+        <parameter name="servicenow_password" value="RH5xAgvoM5eO"/>
+        <classes>
+            <class name="tests.servicenow.ServiceNowWakeupTests"/>
+        </classes>
+    </test>
+</suite>

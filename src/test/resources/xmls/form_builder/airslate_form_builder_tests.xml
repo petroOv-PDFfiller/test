@@ -1,0 +1,19 @@
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
+
+<suite name="Form Builder API" parallel="tests" thread-count="3">
+    <test name="Ui">
+        <classes>
+            <class name="tests.html_form_builder.ui.FirstUITest"/>
+        </classes>
+    </test>
+    <!--<test name="Ui3">-->
+    <!--<classes>-->
+    <!--<class name="tests.html_form_builder.ui.FirstUITest"/>-->
+    <!--</classes>-->
+    <!--</test>-->
+    <!--<test name="Ui2">-->
+    <!--<classes>-->
+    <!--<class name="tests.html_form_builder.ui.FirstUITest"/>-->
+    <!--</classes>-->
+    <!--</test>-->
+</suite>

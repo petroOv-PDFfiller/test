@@ -1,0 +1,11 @@
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
+<suite name="Admin authorization suite" verbose="1">
+
+    <test name="Admin authorization test">
+
+        <parameter name="recipientEmail" value="pdf_sf_rnt@support.pdffiller.com"/>
+        <classes>
+            <class name="tests.salesforce.admin_tools.AdminAuthorizationTest"/>
+        </classes>
+    </test>
+</suite>
